@@ -38,3 +38,7 @@ input:focus {
   opacity: 0.9;
   box-shadow: none;
 }
+
+strong {
+  color: oklch(62.3% 0.214 259.815);
+}

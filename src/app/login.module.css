@@ -1,0 +1,58 @@
+.title {
+  @apply
+    text-2xl
+}
+
+.loginContainer {
+  @apply
+    flex
+    flex-col
+    justify-center
+    items-center
+    h-[100vh]
+}
+
+.loginContent {
+  @apply
+    w-[40vh]
+    h-[40vh]
+    m-auto
+    bg-slate-50
+    p-[25px]
+    flex
+    flex-col
+    justify-between
+}
+
+.inputBox {
+  @apply
+    flex
+    flex-col
+}
+
+.inputBox input {
+  @apply
+    bg-transparent
+    focus:outline-none focus:ring-0
+}
+
+.inputBox a {
+  @apply
+    pl-2
+    hover:opacity-[0.9]
+}
+
+.inputBox p {
+  @apply
+    text-center
+}
+
+.button {
+  @apply
+    w-[100%]
+    bg-blue-500
+    text-slate-900
+    py-[10px]
+    hover:opacity-[0.9]
+    text-lg
+}
