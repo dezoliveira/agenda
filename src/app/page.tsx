@@ -4,6 +4,7 @@ import { useState, FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import { useLogin } from './lib/hooks/useLogin'
 import styles from '../app/login.module.css'
+import Link from 'next/link'
 
 export default function Home() {
   const router = useRouter()
@@ -57,9 +58,9 @@ export default function Home() {
 
         <div className={styles.inputBox}>
           <p>Não possui uma conta ?
-            <a href="#">
+            <Link href="/auth/signup">
               <strong>Registre-se</strong>
-            </a>
+            </Link>
           </p>
         </div>
 
