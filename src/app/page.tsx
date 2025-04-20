@@ -66,8 +66,9 @@ export default function Home() {
           <button
             type="submit"
             className={styles.button}
+            disabled={loading}
           >
-            Login
+            {loading ? "Carregando..." : "Login"}
           </button>
         </div>
 
