@@ -64,3 +64,8 @@
     hover:opacity-[0.9]
     text-lg
 }
+
+.errorMessage {
+  @apply
+    text-red-500
+}
