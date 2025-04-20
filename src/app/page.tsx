@@ -12,16 +12,16 @@ export default function Home() {
 
   return (
     <div className={styles.loginContainer}>
-      <div className={styles.loginContent}>
+      <form className={styles.loginContent}>
         <h1 className={styles.title}>Login</h1>
         <div className={styles.inputBox}>
           <label>Email</label>
-          <input type="text" placeholder="Digite seu email"/>
+          <input type="text"/>
         </div>
 
         <div className={styles.inputBox}>
           <label>Senha</label>
-          <input type="text" placeholder="Digite sua senha"/>
+          <input type="password"/>
         </div>
 
         <div className={styles.inputBox}>
@@ -35,7 +35,7 @@ export default function Home() {
             </a>
           </p>
         </div>
-      </div>      
+      </form>      
     </div>
   );
 }

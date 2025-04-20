@@ -27,6 +27,11 @@
     border-2
 }
 
+.loginContent h1 {
+  @apply
+    text-center
+}
+
 .inputBox {
   @apply
     flex
@@ -54,7 +59,7 @@
   @apply
     w-[100%]
     bg-blue-500
-    text-slate-900
+    text-slate-50
     py-[10px]
     hover:opacity-[0.9]
     text-lg
