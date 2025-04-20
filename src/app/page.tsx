@@ -16,10 +16,15 @@ export default function Home() {
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    
-    await login(email, password)
 
-    if (!error) {
+    const credentials = {
+      email,
+      password
+    }
+    
+    const success = await login(credentials)
+
+    if (success) {
       router.push("/dashboard")
     }
   }
