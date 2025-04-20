@@ -3,8 +3,6 @@ import { useRouter } from 'next/navigation'
 import { useState, FormEvent } from 'react'
 import styles from '../../login.module.css'
 import Link from 'next/link'
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
-import { auth } from '@/app/lib/firebaseAuth'
 import { useRegister } from '@/app/lib/hooks/useRegister'
 
 export default function SignUp() {
@@ -19,10 +17,16 @@ export default function SignUp() {
 
   const handleRegister = async(e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    
-    await register(name, email, password)
 
-    if (!error) {
+    const credentials = {
+      name,
+      email,
+      password
+    }
+    
+    const suceess = await register(credentials)
+
+    if (suceess) {
       router.push('/')
     }
   }
@@ -52,7 +56,7 @@ export default function SignUp() {
         <div className={styles.inputBox}>
           <label>Senha</label>
           <input
-            type="text"
+            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -61,7 +65,7 @@ export default function SignUp() {
         <div className={styles.inputBox}>
           <label>Confirmar Senha</label>
           <input
-            type="text"
+            type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
@@ -84,6 +88,16 @@ export default function SignUp() {
             </Link>
           </p>
         </div>
+
+        {
+          error && (
+            <>
+              <div className={styles.errorMessage}>
+                <p>{error}</p>
+              </div>
+            </>
+          )
+        }
         
       </form>
     </div>

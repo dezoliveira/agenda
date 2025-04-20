@@ -3,8 +3,14 @@ import { auth } from "../firebaseAuth"
 import { updateProfile, createUserWithEmailAndPassword } from "firebase/auth"
 import { useRouter } from "next/navigation"
 
-type UseRegisterResult = {
-  register: (name: string, email: string, password: string) => Promise<void>
+interface RegisterCredentials {
+  name: string,
+  email: string,
+  password: string
+}
+
+interface  UseRegisterResult {
+  register: (credentials: RegisterCredentials) => Promise<boolean>
   error: string
   loading: boolean
 }
@@ -15,7 +21,7 @@ export function useRegister(): UseRegisterResult {
   const [error, setError] = useState<string>("")
   const [loading, setLoading] = useState<boolean>(false)
 
-  const register = async(name:string, email: string, password: string) => {
+  const register = async({name, email, password}: RegisterCredentials) => {
     setError("")
     setLoading(true)
 
@@ -29,11 +35,14 @@ export function useRegister(): UseRegisterResult {
 
       console.log("Usuário registrado", userCredentials.user)
       setLoading(false)
-      router.push("/")
+
+      return true
       
     } catch (error: any) {
       setError(error.message)
       setLoading(false)
+
+      return false
     }
   }
 
