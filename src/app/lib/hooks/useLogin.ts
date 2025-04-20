@@ -1,5 +1,5 @@
 import React, { useState,  } from "react"
-import auth from '../firebaseAuth'
+import { auth } from '@/app/lib/firebaseAuth'
 import { signInWithEmailAndPassword } from "firebase/auth"
 
 type LoginInfo = {
