@@ -5,6 +5,7 @@ import styles from '../../login.module.css'
 import Link from 'next/link'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth } from '@/app/lib/firebaseAuth'
+import { useRegister } from '@/app/lib/hooks/useRegister'
 
 export default function SignUp() {
   const router = useRouter()
@@ -13,29 +14,16 @@ export default function SignUp() {
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
   const [confirmPassword, setConfirmPassword] = useState<string>("")
-  const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState("")
+
+  const { register, error, loading } = useRegister()
 
   const handleRegister = async(e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setError("")
-    setLoading(true)
+    
+    await register(name, email, password)
 
-    try {
-      const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
-      const user = userCredentials.user
-
-      await updateProfile(user, {
-        displayName: name
-      })
-
-      console.log("Usuário registrado", userCredentials.user)
-      setLoading(false)
-      router.push("/")
-      
-    } catch (error: any) {
-      setError(error.message)
-      setLoading(false)
+    if (!error) {
+      router.push('/')
     }
   }
 
