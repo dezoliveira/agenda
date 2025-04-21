@@ -70,3 +70,39 @@
   @apply
     text-red-500
 }
+
+.googleButton {
+  @apply
+    w-[100%]
+    bg-slate-950
+    text-slate-50
+    py-[10px]
+    hover:opacity-[0.9]
+    text-lg
+
+    flex
+    items-center
+    justify-center
+    gap-[10px]
+}
+
+.dividerBox {
+  @apply
+    flex
+    items-center
+    justify-center
+
+    text-sm
+}
+
+.dividerBox p {
+  @apply
+    px-[15px]
+    tracking-widest
+}
+
+.divider {
+  @apply
+    border-[1px]
+    w-[100%]
+}
