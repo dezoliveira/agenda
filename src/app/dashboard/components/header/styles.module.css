@@ -1,0 +1,39 @@
+.headerContainer {
+  @apply
+    w-[100%]
+
+    bg-slate-950
+    text-slate-50
+    py-[15px]
+    px-[25px]
+    shadow-2xl
+}
+
+.headerContent {
+  @apply
+    flex
+    items-center
+    justify-between
+}
+
+.headerContent a {
+  @apply
+    hover:opacity-[.9]
+}
+
+.headerContent nav button {
+  @apply
+    flex
+    gap-[5px]
+    hover:opacity-[.9]
+}
+
+.headerContent a strong {
+  @apply
+    text-blue-400
+}
+
+.errorMessage {
+  @apply
+    text-red-500
+}

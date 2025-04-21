@@ -106,3 +106,10 @@
     border-[1px]
     w-[100%]
 }
+
+@media (max-width: 767px) {
+  .loginContent{
+    @apply
+      w-auto
+  }
+}

@@ -3,7 +3,7 @@
 import { useState, FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import { useLogin } from './lib/hooks/useLogin'
-import styles from '../app/login.module.css'
+import styles from '../app/styles.module.css'
 import Link from 'next/link'
 import { useGoogleLogin } from './lib/hooks/useGoogleLogin'
 import { FcGoogle } from 'react-icons/fc'

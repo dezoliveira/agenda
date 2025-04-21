@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { useState, FormEvent } from 'react'
-import styles from '../../login.module.css'
+import styles from '../../styles.module.css'
 import Link from 'next/link'
 import { useRegister } from '@/app/lib/hooks/useRegister'
 
