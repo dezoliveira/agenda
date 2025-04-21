@@ -1,9 +1,14 @@
-import { signInWithPopup } from "firebase/auth";
-import { GoogleAuthProvider } from "firebase/auth/web-extension";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../firebaseAuth";
 
-export function useGoogleLogin() {
+interface UseGoogleLoginResult {
+  loginWithGoogle: () => Promise<boolean>
+  loading: boolean
+  error: string
+}
+
+export function useGoogleLogin(): UseGoogleLoginResult {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>("")
 
