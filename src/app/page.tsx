@@ -7,6 +7,7 @@ import styles from '../app/styles.module.css'
 import Link from 'next/link'
 import { useGoogleLogin } from './lib/hooks/useGoogleLogin'
 import { FcGoogle } from 'react-icons/fc'
+import { ToastContainer, toast } from 'react-toastify'
 
 export default function Home() {
   const router = useRouter()
@@ -28,7 +29,11 @@ export default function Home() {
     const success = await login(credentials)
 
     if (success) {
+      toast.success('Logado com sucesso!')
       router.push("/dashboard")
+
+    } else {
+      toast.error('Ops! Algo deu errado!')
     }
   }
 
@@ -36,7 +41,11 @@ export default function Home() {
     const success = await loginWithGoogle()
 
     if (success) {
+      toast.success('Logado com sucesso!')
       router.push("/dashboard")
+
+    } else {
+      toast.error('Ops! Algo deu errado!')
     }
   }
 

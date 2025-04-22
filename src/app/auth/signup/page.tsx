@@ -4,6 +4,7 @@ import { useState, FormEvent } from 'react'
 import styles from '../../styles.module.css'
 import Link from 'next/link'
 import { useRegister } from '@/app/lib/hooks/useRegister'
+import { toast } from 'react-toastify'
 
 export default function SignUp() {
   const router = useRouter()
@@ -24,10 +25,14 @@ export default function SignUp() {
       password
     }
     
-    const suceess = await register(credentials)
+    const success = await register(credentials)
 
-    if (suceess) {
+    if (success) {
+      toast.success('Registrado com sucesso!')
       router.push('/')
+
+    } else {
+      toast.error('Ops! Algo deu errado!')
     }
   }
 

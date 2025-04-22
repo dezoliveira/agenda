@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { RiLogoutCircleRLine  } from 'react-icons/ri'
 import { useLogout } from '@/app/lib/hooks/useLogout'
 import { useRouter } from 'next/navigation'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 export function Header() {
   const router = useRouter()
@@ -16,6 +18,10 @@ export function Header() {
 
     if (success) {
       router.push('/')
+      toast.success("Deslogado com sucesso!")
+      
+    } else {
+      toast.error("Ocorreu algum erro")
     }
   }
 

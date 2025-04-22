@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { auth } from "../firebaseAuth"
 import { updateProfile, createUserWithEmailAndPassword } from "firebase/auth"
-import { useRouter } from "next/navigation"
 
 interface RegisterCredentials {
   name: string,
@@ -16,8 +15,6 @@ interface  UseRegisterResult {
 }
 
 export function useRegister(): UseRegisterResult {
-  const router = useRouter()
-  
   const [error, setError] = useState<string>("")
   const [loading, setLoading] = useState<boolean>(false)
 
