@@ -7,14 +7,13 @@ import { useLogout } from '@/app/lib/hooks/useLogout'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { AuthContext } from '@/app/context/AuthContext'
-import { useContext } from 'react'
+import { useAuth } from '@/app/context/AuthContext'
 
 export function Header() {
   const router = useRouter()
 
   const { logout, error, loading } = useLogout()
-  const { user, loading: loadingContext } = useContext(AuthContext)
+  const { user, loading: loadingContext } = useAuth()
   
   const handleLogout = async () => {
     const success = await logout()
