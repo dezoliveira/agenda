@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { RiLogoutCircleRLine  } from 'react-icons/ri'
 import { useLogout } from '@/app/lib/hooks/useLogout'
 import { useRouter } from 'next/navigation'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 export function Header() {

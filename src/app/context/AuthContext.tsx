@@ -1,3 +1,5 @@
+"use client"
+
 import { onAuthStateChanged, User } from "firebase/auth"
 import { createContext, ReactNode, useEffect, useState } from "react"
 import { auth } from "../lib/firebaseAuth"
@@ -7,7 +9,7 @@ interface AuthContextProps {
   loading: boolean
 }
 
-const AuthContext = createContext<AuthContextProps>({
+export const AuthContext = createContext<AuthContextProps>({
   user: null,
   loading: true
 })
