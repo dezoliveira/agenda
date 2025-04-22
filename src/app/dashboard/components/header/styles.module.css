@@ -7,6 +7,8 @@
     py-[15px]
     px-[25px]
     shadow-2xl
+    
+    h-[6%]
 }
 
 .headerContent {
@@ -36,4 +38,10 @@
 .errorMessage {
   @apply
     text-red-500
+}
+
+.navLinks {
+  @apply
+    flex
+    gap-[5px]
 }
