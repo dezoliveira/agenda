@@ -23,10 +23,23 @@ export function useLogin(): UseLoginResult {
 
     try {
       const userCredentials = await signInWithEmailAndPassword(auth, email, password)
-      const user = userCredentials.user
-      console.log("Usuário logado:", user);
-      setLoading(false)
+      const token = await userCredentials.user.getIdToken()
+      
+      const response = await fetch("/api/session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          body: JSON.stringify({ token })
+        }
+      })
 
+      if (!response.ok) {
+        throw new Error("Erro ao iniciar")
+      }
+
+      console.log(response)
+      
+      setLoading(false)
       return true
 
     } catch (error: any) {
