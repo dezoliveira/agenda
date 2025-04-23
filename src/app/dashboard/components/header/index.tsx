@@ -7,13 +7,12 @@ import { useLogout } from '@/app/lib/hooks/useLogout'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { useAuth } from '@/app/context/AuthContext'
+import { useEffect } from 'react'
 
 export function Header() {
   const router = useRouter()
 
-  const { logout, error, loading } = useLogout()
-  const { user, loading: loadingContext } = useAuth()
+  const { logout, loading } = useLogout()
   
   const handleLogout = async () => {
     const success = await logout()
@@ -35,33 +34,11 @@ export function Header() {
         </Link>
 
         <nav className={styles.navLinks}>
-          { !user ? (
-            <>
-              <Link href="/">
-                Login
-              </Link>
-              |
-              <Link href="/auth/signup">
-                Cadastro
-              </Link>
-            </>
-          ) : (
-            <button onClick={handleLogout} disabled={loading}>
-              {/* {loading ? "Saindo..." : "Sair" } */}
-              Sair
-              <RiLogoutCircleRLine size={24} color='#fff'/> 
-            </button>
-          )
-        }
-        {
-          error && (
-            <>
-              <div className={styles.errorMessage}>
-                <p>{error}</p>
-              </div>
-            </>
-          )
-        }
+          <button onClick={handleLogout} disabled={loading}>
+            {/* {loading ? "Saindo..." : "Sair" } */}
+            Sair
+            <RiLogoutCircleRLine size={24} color='#fff'/> 
+          </button>
         </nav>
       </div>
     </header>
