@@ -1,0 +1,27 @@
+import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
+import { verifyIdToken } from "@/app/lib/firebaseAdmin";
+
+
+export async function POST(request: Request) {
+  try {
+    const { token } = await request.json()
+
+    const decodedToken = await verifyIdToken(token)
+
+     //Cria o cookie
+     const cookieStore = await cookies()
+
+     cookieStore.set("session", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 60 * 60 * 24 * 5, // 5 dias
+      path: "/"
+     })
+
+     return NextResponse.json({ success: true, user:decodedToken.uid })
+
+  } catch (err) {
+    return NextResponse.json({ error: "Unauthorized"}, { status: 401 })
+  }
+}
