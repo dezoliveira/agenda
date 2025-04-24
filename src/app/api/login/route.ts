@@ -2,18 +2,15 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { verifyIdToken } from "@/app/lib/firebaseAdmin";
 
-
 export async function POST(request: Request) {
   try {
     const { token } = await request.json()
 
     if (!token) {
-      console.log("[API] Token vazio!")
       return NextResponse.json({ error: "Token vazio" }, { status: 400 })
     }
 
     const decodedToken = await verifyIdToken(token)
-    console.log("[API] Token decodificado com sucesso:", decodedToken.uid)
 
     //Cria o cookie
     const cookieStore = await cookies()
@@ -26,8 +23,6 @@ export async function POST(request: Request) {
       maxAge: 60 * 60 * 24 * 5, // 5 dias
       path: "/"
     })
-
-    console.log("[API] Cookie setado!")
 
     return NextResponse.json({ success: true, user:decodedToken.uid })
 
