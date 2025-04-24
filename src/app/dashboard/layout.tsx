@@ -13,11 +13,9 @@ export default function DashboardLayout({ children } : { children: React.ReactNo
   return (
     <div>
       <Header />
-      <ProtectedRoute>
         <ProtectedContent>
           {children}
         </ProtectedContent>
-      </ProtectedRoute>
     </div>
   )
 }
