@@ -3,7 +3,7 @@
 import styles from './styles.module.css'
 import Link from 'next/link'
 import { RiLogoutCircleRLine  } from 'react-icons/ri'
-import { useLogout } from '@/app/lib/hooks/useLogout'
+import { useLogout } from '@/hooks/useLogout'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';

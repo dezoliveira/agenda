@@ -1,6 +1,6 @@
 import { signOut } from "firebase/auth"
 import { useState } from "react"
-import { auth } from "../firebaseAuth"
+import { auth } from "../lib/firebaseAuth"
 
 type UseLogoutResult = {
   logout: () => Promise<boolean>

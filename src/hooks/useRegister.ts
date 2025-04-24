@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { auth } from "../firebaseAuth"
+import { auth } from "../lib/firebaseAuth"
 import { updateProfile, createUserWithEmailAndPassword } from "firebase/auth"
 
 interface RegisterCredentials {

@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation'
 import { useState, FormEvent } from 'react'
 import styles from '../../styles.module.css'
 import Link from 'next/link'
-import { useRegister } from '@/app/lib/hooks/useRegister'
+import { useRegister } from '@/hooks/useRegister'
 import { toast } from 'react-toastify'
 
 export default function SignUp() {

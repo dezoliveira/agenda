@@ -1,6 +1,6 @@
 'use client'
 
-import { useAuth } from "@/app/context/AuthContext"
+import { useAuth } from "@/context/AuthContext"
 
 export default function ProtectedContent({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
