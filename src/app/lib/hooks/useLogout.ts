@@ -18,14 +18,17 @@ export function useLogout(): UseLogoutResult {
 
     try {
       await signOut(auth)
-      setLoading(false)
 
+      await fetch("/api/logout", {
+        method: "POST"
+      })
+
+      setLoading(false)
       return true
       
     } catch (err: any) {
       setError(err.message || "Erro ao fazer logout")
       setLoading(false)
-
       return false
     }
   }
