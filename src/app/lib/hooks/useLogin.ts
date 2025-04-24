@@ -24,13 +24,16 @@ export function useLogin(): UseLoginResult {
     try {
       const userCredentials = await signInWithEmailAndPassword(auth, email, password)
       const token = await userCredentials.user.getIdToken()
+
+      console.log("ID TOKEN", token)
       
       const response = await fetch("/api/session", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          body: JSON.stringify({ token })
-        }
+        },
+
+        body: JSON.stringify({ token })
       })
 
       if (!response.ok) {

@@ -1,15 +1,15 @@
-import * as admin from "firebase-admin" 
-
-const serviceAccount = JSON.parse(
-  process.env.FIREBASE_SERVICE_ACCOUNT_KEY || "{}"
-)
+import admin from "firebase-admin"
 
 if (!admin.apps.length) {
   admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-  });
+    credential: admin.credential.cert({
+      privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+      projectId: process.env.FIREBASE_PROJECT_ID,
+    }),
+  })
 }
 
-export async function verifyIdToken(token: string) {
-  return await admin.auth().verifyIdToken(token)
+export const verifyIdToken = async (token: string) => {
+  return admin.auth().verifyIdToken(token)
 }
