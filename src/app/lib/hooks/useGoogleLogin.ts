@@ -18,11 +18,23 @@ export function useGoogleLogin(): UseGoogleLoginResult {
     setError("")
 
     try {
-      const result = await signInWithPopup(auth, provider)
-      const user = result.user
-      console.log("Usuário logado com Google:", user)
-      setLoading(false)
+      const userCredentials = await signInWithPopup(auth, provider)
+      const token = await userCredentials.user.getIdToken()
 
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({ token })
+      })
+
+      if (!response.ok) {
+        throw new Error("Erro ao iniciar sessão com Google")
+      }
+
+      setLoading(false)
       return true
 
     } catch (err: any) {

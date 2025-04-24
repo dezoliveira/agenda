@@ -24,10 +24,8 @@ export function useLogin(): UseLoginResult {
     try {
       const userCredentials = await signInWithEmailAndPassword(auth, email, password)
       const token = await userCredentials.user.getIdToken()
-
-      console.log("ID TOKEN", token)
       
-      const response = await fetch("/api/session", {
+      const response = await fetch("/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,10 +35,8 @@ export function useLogin(): UseLoginResult {
       })
 
       if (!response.ok) {
-        throw new Error("Erro ao iniciar")
+        throw new Error("Erro ao iniciar sessão")
       }
-
-      console.log(response)
       
       setLoading(false)
       return true
