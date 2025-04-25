@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { useState, FormEvent } from 'react'
-import styles from '../../styles.module.css'
+import styles from '../styles.module.css'
 import Link from 'next/link'
 import { useRegister } from '@/hooks/useRegister'
 import { toast } from 'react-toastify'
@@ -88,7 +88,7 @@ export default function SignUp() {
 
         <div className={styles.inputBox}>
           <p>Já é registrado ?
-            <Link href="/">
+            <Link href="/auth/login">
               <strong>Faça Login</strong>
             </Link>
           </p>

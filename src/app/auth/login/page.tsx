@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation"
 import { useState, FormEvent } from "react"
 import { useLogin } from "@/hooks/useLogin"
 import { toast } from "react-toastify"
-import styles from './styles.module.css'
+import styles from '../styles.module.css'
 import Link from "next/link"
 import { FcGoogle } from 'react-icons/fc'
 import { useGoogleLogin } from "@/hooks/useGoogleLogin"
