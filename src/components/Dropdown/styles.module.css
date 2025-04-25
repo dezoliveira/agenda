@@ -1,0 +1,35 @@
+.dropdownContainer {
+  @apply
+    absolute
+    right-[25px]
+    top-[25px]
+    flex
+    flex-col
+    items-center
+    gap-[15px]
+    w-[25vh]
+    bg-slate-50
+    text-slate-900
+    /* p-[25px] */
+    shadow-2xl
+}
+
+.dropdownContainer ul {
+  @apply
+    w-full
+    flex
+    flex-col
+    /* gap-[15px] */
+}
+
+.dropdownContainer ul li {
+  @apply
+    w-full
+    transition delay-100 duration-100
+    hover:opacity-[.9]
+    hover:cursor-pointer
+    hover:bg-blue-500
+    hover:text-slate-50
+    py-[10px]
+    px-[15px]
+}

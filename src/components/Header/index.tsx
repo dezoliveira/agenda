@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { FaUser } from 'react-icons/fa'
 import { userInfo } from 'os'
+import Dropdown from '../Dropdown'
 
 export function Header() {
   const router = useRouter()
@@ -70,6 +71,7 @@ export function Header() {
             )
           }
           </div>
+          <Dropdown />
           {/* <button onClick={handleLogout} disabled={loading}>
             Sair
             <RiLogoutCircleRLine size={24} color='#fff'/> 

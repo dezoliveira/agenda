@@ -45,6 +45,7 @@
     flex
     items-center
     gap-[15px]
+    relative
 }
 
 .navLinks svg,
@@ -57,4 +58,10 @@
 .navLinks svg {
   @apply
     bg-blue-500
+}
+
+.hr {
+  @apply
+    mx-[15px]
+    my-[0px]
 }
