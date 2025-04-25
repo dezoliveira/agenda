@@ -47,15 +47,14 @@
     gap-[15px]
 }
 
-.profileImage {
+.navLinks svg,
+.navLinks img {
   @apply
     rounded-full
     hover:cursor-pointer
 }
 
-.profileIcon {
+.navLinks svg {
   @apply
-    rounded-full
     bg-blue-500
-    hover:cursor-pointer
 }

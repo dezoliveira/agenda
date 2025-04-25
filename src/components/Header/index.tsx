@@ -57,7 +57,7 @@ export function Header() {
           <div className={styles.profileInfo}>
           {
             !loadingContext && !picture ? (
-              <FaUser size={30} className={styles.profileIcon}/>
+              <FaUser size={30} />
             ) : (
               !loadingContext && picture &&(
                 <Image
@@ -65,7 +65,6 @@ export function Header() {
                   alt="profile-pic"
                   width={30}
                   height={30}
-                  className={styles.profileImage}
                 />
               )
             )
