@@ -110,6 +110,6 @@
 @media (max-width: 767px) {
   .loginContent{
     @apply
-      w-auto
+      h-[60vh]
   }
 }

@@ -10,6 +10,7 @@ export default function SignUp() {
   const router = useRouter()
 
   const [name, setName] = useState<string>("")
+  const [lastName, setLastName] = useState<string>("")
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
   const [confirmPassword, setConfirmPassword] = useState<string>("")
@@ -46,6 +47,15 @@ export default function SignUp() {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+
+        <div className={styles.inputBox}>
+          <label>Sobrenome</label>
+          <input
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
           />
         </div>
 
