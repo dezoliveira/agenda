@@ -7,15 +7,33 @@ import { useLogout } from '@/hooks/useLogout'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { useEffect } from 'react'
+import { useAuth } from '@/context/AuthContext'
+import { useEffect, useState } from 'react'
+import Image from 'next/image'
+import { FaUser } from 'react-icons/fa'
+import { userInfo } from 'os'
 
 export function Header() {
   const router = useRouter()
 
   const { logout, loading } = useLogout()
+  const { user, loading: loadingContext } = useAuth()
+  const [picture, setPicture] = useState("")
+  const [name, setName] = useState("")
+
+  useEffect(() => {
+    if (user?.photoURL) {
+      setPicture(user.photoURL)
+    }
+
+    if (user?.displayName) {
+      setName(user.displayName)
+    }
+  }, [user])
   
   const handleLogout = async () => {
     const success = await logout()
+    console.log(user)
 
     if (success) {
       router.push('/')
@@ -34,11 +52,29 @@ export function Header() {
         </Link>
 
         <nav className={styles.navLinks}>
-          <button onClick={handleLogout} disabled={loading}>
-            {/* {loading ? "Saindo..." : "Sair" } */}
+          {!loadingContext && name && (<small>{name}</small>)}
+
+          <div className={styles.profileInfo}>
+          {
+            !loadingContext && !picture ? (
+              <FaUser size={30} className={styles.profileIcon}/>
+            ) : (
+              !loadingContext && picture &&(
+                <Image
+                  src={picture}
+                  alt="profile-pic"
+                  width={30}
+                  height={30}
+                  className={styles.profileImage}
+                />
+              )
+            )
+          }
+          </div>
+          {/* <button onClick={handleLogout} disabled={loading}>
             Sair
             <RiLogoutCircleRLine size={24} color='#fff'/> 
-          </button>
+          </button> */}
         </nav>
       </div>
     </header>

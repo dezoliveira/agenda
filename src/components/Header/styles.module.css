@@ -43,5 +43,19 @@
 .navLinks {
   @apply
     flex
-    gap-[5px]
+    items-center
+    gap-[15px]
+}
+
+.profileImage {
+  @apply
+    rounded-full
+    hover:cursor-pointer
+}
+
+.profileIcon {
+  @apply
+    rounded-full
+    bg-blue-500
+    hover:cursor-pointer
 }
