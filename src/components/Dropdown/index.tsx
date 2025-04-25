@@ -1,37 +1,41 @@
+import { User } from 'firebase/auth'
 import styles from './styles.module.css'
 
-export default function Dropdown() {
+type DropdownItens = {
+  label: string
+  icon: React.ReactNode
+  onClick: () => void
+}
+
+type DropdownProps = {
+  user: {
+    name: string
+    email: string
+    photo: string
+  }
+  items: DropdownItens[]
+}
+
+export default function Dropdown({ user, items }: DropdownProps) {
+
   return (
     <div className={styles.dropdownContainer}>
-      <div className='text-center pt-4'>
-        <h4>Andres Oliveira</h4>
-        <small className='text-slate-300'>andresoliveira@gmail.com</small>
-      </div>
+      { user && (
+        <div className='text-center pt-4'>
+          <h4>{user.name}</h4>
+          <small className='text-slate-300'>{user.email}</small>
+        </div>
+      )}
       <ul>
         <hr className='mx-[15px] my-[0]'/>
-        <li>
-          <div>Meu Perfil</div>
-        </li>
-        <hr className='mx-[15px] my-[0]'/>
-        <li>
-          <div>Editar Perfil</div>
-        </li>
-        <hr className='mx-[15px] my-[0]'/>
-        <li>
-          <div>Inbox</div>
-        </li>
-        <hr className='mx-[15px] my-[0]'/>
-        <li>
-          <div>Configurações</div>
-        </li>
-        <hr className='mx-[15px] my-[0]'/>
-        <li>
-          <div>Ajuda</div>
-        </li>
-        <hr className='mx-[15px] my-[0]'/>
-        <li>
-          <div>Sair</div>
-        </li>
+        {
+          items.map((item, i) =>(
+            <li key={i} onClick={item.onClick}>
+              {item.icon}
+              <p>{item.label}</p>
+            </li>
+          ))
+        }
       </ul>
     </div>
   )

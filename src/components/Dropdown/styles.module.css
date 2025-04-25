@@ -25,6 +25,9 @@
 .dropdownContainer ul li {
   @apply
     w-full
+    flex
+    items-center
+    gap-[5px]
     transition delay-100 duration-100
     hover:opacity-[.9]
     hover:cursor-pointer
@@ -32,4 +35,17 @@
     hover:text-slate-50
     py-[10px]
     px-[15px]
+}
+
+.dropdownContainer ul li:hover svg {
+  @apply
+    text-slate-50
+}
+
+.dropdownContainer ul li svg {
+  @apply
+  bg-transparent
+  text-blue-500
+  transition-all
+  font-bold
 }

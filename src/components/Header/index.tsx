@@ -2,7 +2,6 @@
 
 import styles from './styles.module.css'
 import Link from 'next/link'
-import { RiLogoutCircleRLine  } from 'react-icons/ri'
 import { useLogout } from '@/hooks/useLogout'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
@@ -11,8 +10,11 @@ import { useAuth } from '@/context/AuthContext'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { FaUser } from 'react-icons/fa'
-import { userInfo } from 'os'
 import Dropdown from '../Dropdown'
+import { IoExitOutline, IoHelpCircleOutline, IoMailOutline } from "react-icons/io5";
+import { GrConfigure } from "react-icons/gr";
+import { LiaUserEditSolid } from "react-icons/lia";
+import { AiOutlineUser } from "react-icons/ai";
 
 export function Header() {
   const router = useRouter()
@@ -45,6 +47,21 @@ export function Header() {
     }
   }
 
+  const userData = {
+    name: user?.displayName ?? 'Usuario',
+    email: user?.email ?? '',
+    photo: user?.photoURL ?? ''
+  }
+
+  const dropdownItens = [
+    { label: "Meu Perfil", icon: <AiOutlineUser size={18} />, onClick: () => router.push("/profile") },
+    { label: "Editar Perfil", icon: <LiaUserEditSolid size={18}/>, onClick: () => router.push("/profile-edit") },
+    { label: "Inbox", icon: <IoMailOutline size={18}/>, onClick: () => router.push("/inbox") },
+    { label: "Configurações", icon: <GrConfigure size={18}/>, onClick: () => router.push("/config") },
+    { label: "Ajuda", icon: <IoHelpCircleOutline size={18}/>, onClick: () => router.push("/help") },
+    { label: "Sair", icon: <IoExitOutline size={18}/>, onClick: handleLogout},
+  ]
+
   return(
     <header className={styles.headerContainer}>
       <div className={styles.headerContent}>
@@ -71,11 +88,10 @@ export function Header() {
             )
           }
           </div>
-          <Dropdown />
-          {/* <button onClick={handleLogout} disabled={loading}>
-            Sair
-            <RiLogoutCircleRLine size={24} color='#fff'/> 
-          </button> */}
+          <Dropdown
+            user={userData}
+            items={dropdownItens}  
+          />
         </nav>
       </div>
     </header>
