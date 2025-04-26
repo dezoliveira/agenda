@@ -11,10 +11,7 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { FaUser } from 'react-icons/fa'
 import Dropdown from '../Dropdown'
-import { IoExitOutline, IoHelpCircleOutline, IoMailOutline } from "react-icons/io5";
-import { GrConfigure } from "react-icons/gr";
-import { LiaUserEditSolid } from "react-icons/lia";
-import { AiOutlineUser } from "react-icons/ai";
+import { getDropdownItens } from '@/utils/dropdownItems'
 
 export function Header() {
   const router = useRouter()
@@ -23,6 +20,8 @@ export function Header() {
   const { user, loading: loadingContext } = useAuth()
   const [picture, setPicture] = useState("")
   const [name, setName] = useState("")
+
+  const dropdownItens = getDropdownItens(router, handleLogout)
 
   useEffect(() => {
     if (user?.photoURL) {
@@ -52,15 +51,6 @@ export function Header() {
     email: user?.email ?? '',
     photo: user?.photoURL ?? ''
   }
-
-  const dropdownItens = [
-    { label: "Meu Perfil", icon: <AiOutlineUser size={18} />, onClick: () => router.push("/profile") },
-    { label: "Editar Perfil", icon: <LiaUserEditSolid size={18}/>, onClick: () => router.push("/profile-edit") },
-    { label: "Inbox", icon: <IoMailOutline size={18}/>, onClick: () => router.push("/inbox") },
-    { label: "Configurações", icon: <GrConfigure size={18}/>, onClick: () => router.push("/config") },
-    { label: "Ajuda", icon: <IoHelpCircleOutline size={18}/>, onClick: () => router.push("/help") },
-    { label: "Sair", icon: <IoExitOutline size={18}/>, onClick: handleLogout},
-  ]
 
   return(
     <header className={styles.headerContainer}>
