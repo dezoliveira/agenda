@@ -21,6 +21,7 @@ export function Header() {
   const [picture, setPicture] = useState("")
   const [name, setName] = useState("")
   const [isOpen, setIsOpen] = useState(false)
+  const [isGoogleLogin, setIsGoogleLogin] = useState("")
 
   useEffect(() => {
     if (user?.photoURL) {
@@ -29,6 +30,12 @@ export function Header() {
 
     if (user?.displayName) {
       setName(user.displayName)
+    }
+
+    if (user?.providerData){
+        user.providerData.forEach((profile) => {
+          setIsGoogleLogin(profile.providerId)
+        })
     }
   }, [user])
   
@@ -83,6 +90,7 @@ export function Header() {
             user={userData}
             items={dropdownMenu}
             showDropdown={isOpen}
+            providerData={isGoogleLogin}
           />
         </nav>
       </div>

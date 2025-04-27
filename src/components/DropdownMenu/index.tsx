@@ -1,5 +1,6 @@
 import { User } from 'firebase/auth'
 import styles from './styles.module.css'
+import { FcGoogle } from "react-icons/fc";
 
 type DropdownItens = {
   label: string
@@ -15,9 +16,10 @@ type DropdownProps = {
   }
   items: DropdownItens[]
   showDropdown: boolean
+  providerData: string
 }
 
-export default function Dropdown({ user, items, showDropdown }: DropdownProps) {
+export default function Dropdown({ user, items, showDropdown, providerData }: DropdownProps) {
 
   return (
     <>
@@ -27,7 +29,14 @@ export default function Dropdown({ user, items, showDropdown }: DropdownProps) {
             { user && (
               <div className='text-center pt-4'>
                 <h4>{user.name}</h4>
-                <small className='text-slate-300'>{user.email}</small>
+                <div className={styles.dropdownUserInfo}>
+                  { 
+                    providerData.includes('google') && (
+                      <FcGoogle size={18}/>
+                    )
+                  }
+                  <small className='text-slate-300'>{user.email}</small>
+                </div>
               </div>
             )}
             <ul>

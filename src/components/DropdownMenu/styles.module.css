@@ -49,3 +49,10 @@
   transition-all
   font-bold
 }
+
+.dropdownUserInfo {
+  @apply
+    flex
+    items-center
+    gap-[5px]
+}

@@ -48,14 +48,14 @@
     relative
 }
 
-.navLinks svg,
-.navLinks img {
+.profileInfo svg,
+.profileInfo img {
   @apply
     rounded-full
     hover:cursor-pointer
 }
 
-.navLinks svg {
+.profileInfo svg {
   @apply
     bg-blue-500
 }
