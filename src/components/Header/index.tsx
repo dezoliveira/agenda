@@ -20,6 +20,7 @@ export function Header() {
   const { user, loading: loadingContext } = useAuth()
   const [picture, setPicture] = useState("")
   const [name, setName] = useState("")
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     if (user?.photoURL) {
@@ -62,7 +63,7 @@ export function Header() {
         <nav className={styles.navLinks}>
           {!loadingContext && name && (<small>{name}</small>)}
 
-          <div className={styles.profileInfo}>
+          <div className={styles.profileInfo} onClick={() => setIsOpen(!isOpen)}>
           {
             !loadingContext && !picture ? (
               <FaUser size={30} />
@@ -80,7 +81,8 @@ export function Header() {
           </div>
           <Dropdown
             user={userData}
-            items={dropdownMenu}  
+            items={dropdownMenu}
+            showDropdown={isOpen}
           />
         </nav>
       </div>

@@ -14,29 +14,36 @@ type DropdownProps = {
     photo: string
   }
   items: DropdownItens[]
+  showDropdown: boolean
 }
 
-export default function Dropdown({ user, items }: DropdownProps) {
+export default function Dropdown({ user, items, showDropdown }: DropdownProps) {
 
   return (
-    <div className={styles.dropdownContainer}>
-      { user && (
-        <div className='text-center pt-4'>
-          <h4>{user.name}</h4>
-          <small className='text-slate-300'>{user.email}</small>
-        </div>
-      )}
-      <ul>
-        <hr className='mx-[15px] my-[0]'/>
-        {
-          items.map((item, i) =>(
-            <li key={i} onClick={item.onClick}>
-              {item.icon}
-              <p>{item.label}</p>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
+    <>
+      {
+        showDropdown && (
+          <div className={styles.dropdownContainer}>
+            { user && (
+              <div className='text-center pt-4'>
+                <h4>{user.name}</h4>
+                <small className='text-slate-300'>{user.email}</small>
+              </div>
+            )}
+            <ul>
+              <hr className='mx-[15px] my-[0]'/>
+              {
+                items.map((item, i) =>(
+                  <li key={i} onClick={item.onClick}>
+                    {item.icon}
+                    <p>{item.label}</p>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        )
+      }
+    </>
   )
 }
