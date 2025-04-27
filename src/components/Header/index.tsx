@@ -10,8 +10,8 @@ import { useAuth } from '@/context/AuthContext'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { FaUser } from 'react-icons/fa'
-import Dropdown from '../Dropdown'
-import { getDropdownItens } from '@/utils/dropdownItems'
+import Dropdown from '../DropdownMenu'
+import { getDropdownMenu } from './dropdownMenu'
 
 export function Header() {
   const router = useRouter()
@@ -20,8 +20,6 @@ export function Header() {
   const { user, loading: loadingContext } = useAuth()
   const [picture, setPicture] = useState("")
   const [name, setName] = useState("")
-
-  const dropdownItens = getDropdownItens(router, handleLogout)
 
   useEffect(() => {
     if (user?.photoURL) {
@@ -52,6 +50,8 @@ export function Header() {
     photo: user?.photoURL ?? ''
   }
 
+  const dropdownMenu = getDropdownMenu(router, handleLogout)
+
   return(
     <header className={styles.headerContainer}>
       <div className={styles.headerContent}>
@@ -80,7 +80,7 @@ export function Header() {
           </div>
           <Dropdown
             user={userData}
-            items={dropdownItens}  
+            items={dropdownMenu}  
           />
         </nav>
       </div>
