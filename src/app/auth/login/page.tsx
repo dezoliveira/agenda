@@ -72,6 +72,12 @@ export default function Login() {
         </div>
 
         <div className={styles.inputBox}>
+          <Link href="/forgot-password" style={{ paddingLeft: 0 }}>
+            <strong>Esqueceu a senha ?</strong>
+          </Link>
+        </div>
+
+        <div className={styles.inputBox}>
           <button
             type="submit"
             className={styles.button}

@@ -56,6 +56,12 @@
     text-center
 }
 
+/* .inputBox small {
+  @apply
+    text-blue-500
+    font-bold
+} */
+
 .button {
   @apply
     w-[100%]
