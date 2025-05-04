@@ -15,7 +15,7 @@ export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("")
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
-  const [error, setError] = useState<Error | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -52,11 +52,15 @@ export default function ForgotPasswordPage() {
                 />
               </div>
 
-              { error && (
-                <div>
-                  <p>{error.message}</p>
-                </div>
-              )}
+              {
+                error && (
+                  <>
+                    <div className={styles.errorMessage}>
+                      <p>{error}</p>
+                    </div>
+                  </>
+                )
+              }
               
               <div className={styles.inputBox}>
                 <button

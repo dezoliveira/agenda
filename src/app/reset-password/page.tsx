@@ -7,6 +7,7 @@ import { auth } from "@/lib/firebaseAuth"
 import { confirmPasswordReset } from "firebase/auth"
 import { toast } from "react-toastify"
 import { MdMarkEmailRead } from "react-icons/md";
+import StatusAlert from "@/components/StatusAlert"
 
 export default function ResetPasswordPage() {
   const router = useRouter()
@@ -16,7 +17,7 @@ export default function ResetPasswordPage() {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
+  const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -87,12 +88,12 @@ export default function ResetPasswordPage() {
             </>
           ) : (
             <>
-              <div className="flex items-center flex-col text-green-500 justify-center">
-                <MdMarkEmailRead size={60} color="#22c55e"/>
-                <p>Senha alterada com sucesso!</p>
-              </div>
-              <p>Sua senha foi alterada! Faça login e continue usando o agenda.</p>
-
+              <StatusAlert 
+                status="success"
+                title="Senha alterada com sucesso"
+                message="Sua senha foi alterada! Faça login e continue usando o agenda."
+                icon={<MdMarkEmailRead size={60} className="text-green-500" />}
+              />
               <div className={styles.inputBox}>
                 <button
                   type="button"

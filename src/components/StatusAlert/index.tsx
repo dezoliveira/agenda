@@ -2,6 +2,10 @@ import { MdErrorOutline, MdMarkEmailRead, MdOutlineEmail } from "react-icons/md"
 
 interface StatusAlertProps {
   status: 'success' | 'error' | 'idle'
+  title?: string,
+  message?: string
+  icon?: React.ReactNode
+  color?:string
 }
 
 const statusMap = {
@@ -27,16 +31,16 @@ const statusMap = {
   }
 }
 
-export default function StatusAlert({ status } : StatusAlertProps) {
-  const { icon, title, message, color } = statusMap[status]
+export default function StatusAlert({ status, title, message, icon, color } : StatusAlertProps) {
+  const defaultData = statusMap[status]
   
   return (
     <>
       <div className="flex items-center flex-col justify-between gap-[5px]">
-        {icon}
-        <p className={color}>{title}</p>
+        {icon ?? defaultData.icon}
+        <p className={color ?? defaultData.color}>{title ?? defaultData.title}</p>
       </div>
-      <p>{message}</p>
+      <p>{message ?? defaultData.message}</p>
     </>
   )
 }
