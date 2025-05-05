@@ -8,13 +8,14 @@ import { toast } from "react-toastify";
 import { MdOutlineEmail } from "react-icons/md";
 import { MdMarkEmailRead } from "react-icons/md";
 import { useRouter } from "next/navigation";
+import StatusAlert from "@/components/StatusAlert";
 
 export default function ForgotPasswordPage() {
   const router = useRouter()
   const [email, setEmail] = useState("")
   const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const [error, setError] = useState<Error | null>(null)
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -23,12 +24,12 @@ export default function ForgotPasswordPage() {
     try {
       await sendPasswordResetEmail(auth, email)
       toast.success("Email enviado com sucesso!")
-      setSuccess(true)
+      setStatus('success')
 
     } catch (err: any) {
       toast.error("Ops! Algo deu errado!")
       setError(err.message)
-      setSuccess(false)
+      setStatus('error')
     }
 
     setLoading(false)
@@ -38,14 +39,10 @@ export default function ForgotPasswordPage() {
     <div className={styles.loginContainer}>
       <form className={styles.loginContent} onSubmit={handleSubmit}>
         <h1 className={styles.title}>Esqueceu sua senha ?</h1>
+        <StatusAlert status={status}/>
         {
-          !success ? (
+          status !== 'success' ? (
             <>
-              <div className="flex items-center flex-col text-yellow-500">
-                <MdOutlineEmail size={60} />
-                <p>Preparando o envio do email</p>
-              </div>
-              <p>Informe seu e-mail para continuarmos com a recuperação da sua senha.</p>
               <div className={styles.inputBox}>
                 <label>Email</label>
                 <input
@@ -55,15 +52,19 @@ export default function ForgotPasswordPage() {
                 />
               </div>
 
-              { error && (
-                <div>
-                  <p>{error.message}</p>
-                </div>
-              )}
+              {
+                error && (
+                  <>
+                    <div className={styles.errorMessage}>
+                      <p>{error}</p>
+                    </div>
+                  </>
+                )
+              }
               
               <div className={styles.inputBox}>
                 <button
-                  type="button"
+                  type="submit"
                   className={styles.button}
                   disabled={loading}
                   onClick={handleSubmit}
@@ -74,12 +75,6 @@ export default function ForgotPasswordPage() {
             </>
           ) : (
             <>
-              <div className="flex items-center flex-col text-green-500 justify-center">
-                <MdMarkEmailRead size={60} color="#22c55e"/>
-                <p>Enviado com sucesso!</p>
-              </div>
-              <p>Te enviamos um email, siga os passos para recuperar a sua senha.</p>
-
               <div className={styles.inputBox}>
                 <button
                   type="button"
