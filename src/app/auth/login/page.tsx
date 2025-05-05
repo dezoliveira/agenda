@@ -8,6 +8,7 @@ import styles from '../styles.module.css'
 import Link from "next/link"
 import { FcGoogle } from 'react-icons/fc'
 import { useGoogleLogin } from "@/hooks/useGoogleLogin"
+import { Button } from "@/components/Button"
 
 export default function Login() {
   const router = useRouter()
@@ -77,15 +78,12 @@ export default function Login() {
           </Link>
         </div>
 
-        <div className={styles.inputBox}>
-          <button
-            type="submit"
-            className={styles.button}
-            disabled={loading}
-          >
-            {loading ? "Carregando..." : "Login"}
-          </button>
-        </div>
+        <Button
+          text="Login"
+          type="submit"
+          loading={loading}
+          route="/auth/login"
+        />
 
         <div className={styles.dividerBox}>
           <span className={styles.divider}></span>
