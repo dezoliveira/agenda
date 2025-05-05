@@ -1,0 +1,15 @@
+.buttonContainer {
+  @apply
+    flex
+    flex-col
+}
+
+.button {
+  @apply
+    w-[100%]
+    bg-blue-500
+    text-slate-50
+    py-[10px]
+    hover:opacity-[0.9]
+    text-lg
+}
