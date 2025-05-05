@@ -8,6 +8,7 @@ import styles from '../styles.module.css'
 import Link from "next/link"
 import { FcGoogle } from 'react-icons/fc'
 import { useGoogleLogin } from "@/hooks/useGoogleLogin"
+import AuthForm from "@/components/Forms/AuthForm"
 
 export default function Login() {
   const router = useRouter()
@@ -49,80 +50,64 @@ export default function Login() {
     }
   }
 
-  return (
-    <div className={styles.loginContainer}>
-      <form className={styles.loginContent} onSubmit={handleLogin}>
-        <h1 className={styles.title}>Login</h1>
-        <div className={styles.inputBox}>
-          <label>Email</label>
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
+  const fields =[
+    {
+      label: "Email",
+      type: "text",
+      value: email,
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)
+    },
+    {
+      label: "Senha",
+      type: "password",
+      value: password,
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)
+    }
+  ]
 
-        <div className={styles.inputBox}>
-          <label>Senha</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-
-        <div className={styles.inputBox}>
-          <Link href="/forgot-password" style={{ paddingLeft: 0 }}>
-            <strong>Esqueceu a senha ?</strong>
-          </Link>
-        </div>
-
-        <div className={styles.inputBox}>
-          <button
-            type="submit"
-            className={styles.button}
-            disabled={loading}
-          >
-            {loading ? "Carregando..." : "Login"}
-          </button>
-        </div>
-
-        <div className={styles.dividerBox}>
-          <span className={styles.divider}></span>
-            <p>OU</p>
-          <span className={styles.divider}></span>
-        </div>
-
-        <div className={styles.inputBox}>
-          <button
-            type="button"
-            className={styles.googleButton}
-            disabled={loadingGoogle}
-            onClick={handleGoogleLogin}
-          >
-            <FcGoogle size={32}/>
-            {loadingGoogle ? "Carregando..." : "Entrar com Google"}
-          </button>
-        </div>
-
-        <div className={styles.inputBox}>
-          <p>Não possui uma conta ?
-            <Link href="/auth/signup">
-              <strong>Registre-se</strong>
-            </Link>
-          </p>
-        </div>
-
-        {
-          error || errorGoogle && (
-            <>
-              <div className={styles.errorMessage}>
-                <p>{error || errorGoogle}</p>
-              </div>
-            </>
-          )
-        }
-      </form> 
+  const afterFields = (
+    <div className={styles.inputBox}>
+      <Link href="/forgot-password" style={{ paddingLeft: 0 }}>
+        <strong>Esqueceu a senha ?</strong>
+      </Link>
     </div>
-  );
+  )
+
+  return (
+    <AuthForm
+      title="Login"
+      fields={fields}
+      onSubmit={handleLogin}
+      buttonLabel="Entrar"
+      loading={loading}
+      error={error}
+      afterFields={afterFields}
+    >
+      <div className={styles.dividerBox}>
+        <span className={styles.divider}></span>
+          <p>OU</p>
+        <span className={styles.divider}></span>
+      </div>
+
+      <div className={styles.inputBox}>
+        <button
+          type="button"
+          className={styles.googleButton}
+          disabled={loadingGoogle}
+          onClick={handleGoogleLogin}
+        >
+          <FcGoogle size={32}/>
+          {loadingGoogle ? "Carregando..." : "Entrar com Google"}
+        </button>
+      </div>
+
+      <div className={styles.inputBox}>
+        <p>Não possui uma conta ?
+          <Link href="/auth/signup">
+          <strong>Registre-se</strong>
+          </Link>
+        </p>
+      </div>
+    </AuthForm>
+  )
 }

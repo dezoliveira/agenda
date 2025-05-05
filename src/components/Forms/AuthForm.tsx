@@ -14,6 +14,7 @@ interface AuthFormProps {
   loading: boolean
   error?: string | null
   children?: React.ReactNode
+  afterFields?: React.ReactNode
 }
 
 export default function AuthForm({
@@ -23,7 +24,8 @@ export default function AuthForm({
   buttonLabel,
   loading,
   error,
-  children
+  children,
+  afterFields
 }: AuthFormProps) {
   return (
     <div className={styles.AuthFormContainer}>
@@ -40,6 +42,14 @@ export default function AuthForm({
               />
             </div>
           ))
+        }
+
+        {
+          afterFields && (
+            <>
+              {afterFields}
+            </>
+          )
         }
 
         { 
