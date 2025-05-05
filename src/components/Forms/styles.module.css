@@ -1,0 +1,121 @@
+.title {
+  @apply
+    text-2xl
+}
+
+.AuthFormContainer {
+  @apply
+    flex
+    flex-col
+    justify-center
+    items-center
+    h-[100vh]
+}
+
+.AuthFormContent {
+  @apply
+    w-[45vh]
+    h-[50vh]
+    m-auto
+    bg-slate-50
+    p-[25px]
+    flex
+    flex-col
+    justify-between
+    shadow-lg
+    border-gray-50
+    border-2
+    gap-[8px]
+}
+
+.AuthFormContent h1 {
+  @apply
+    text-center
+}
+
+.inputBox {
+  @apply
+    flex
+    flex-col
+}
+
+.inputBox input {
+  @apply
+    bg-transparent
+    focus:outline-none focus:ring-0
+}
+
+.inputBox a {
+  @apply
+    pl-2
+    hover:opacity-[0.9]
+}
+
+.inputBox p {
+  @apply
+    text-center
+}
+
+/* .inputBox small {
+  @apply
+    text-blue-500
+    font-bold
+} */
+
+.button {
+  @apply
+    w-[100%]
+    bg-blue-500
+    text-slate-50
+    py-[10px]
+    hover:opacity-[0.9]
+    text-lg
+}
+
+.errorMessage {
+  @apply
+    text-red-500
+}
+
+.googleButton {
+  @apply
+    w-[100%]
+    bg-slate-950
+    text-slate-50
+    py-[10px]
+    hover:opacity-[0.9]
+    text-lg
+
+    flex
+    items-center
+    justify-center
+    gap-[10px]
+}
+
+.dividerBox {
+  @apply
+    flex
+    items-center
+    justify-center
+
+    text-sm
+}
+
+.dividerBox p {
+  @apply
+    px-[15px]
+    tracking-widest
+}
+
+.divider {
+  @apply
+    border-[1px]
+    w-[100%]
+}
+
+@media (max-width: 767px) {
+  .AuthFormContent{
+    @apply
+      h-[60vh]
+  }
+}
