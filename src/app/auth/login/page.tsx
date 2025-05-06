@@ -10,6 +10,7 @@ import { FcGoogle } from 'react-icons/fc'
 import { useGoogleLogin } from "@/hooks/useGoogleLogin"
 import { Button } from "@/components/Button"
 import GoogleButton from "@/components/GoogleButton"
+import { AuthLink } from "../components/AuthLink"
 
 export default function Login() {
   const router = useRouter()
@@ -97,13 +98,11 @@ export default function Login() {
           onClick={handleGoogleLogin}
         />
 
-        <div className={styles.inputBox}>
-          <p>Não possui uma conta ?
-            <Link href="/auth/signup">
-              <strong>Registre-se</strong>
-            </Link>
-          </p>
-        </div>
+        <AuthLink
+          message="Não possui uma conta ?"
+          hrefLink="/auth/signup"
+          hrefText="Registre-se"
+        />
 
         {
           error || errorGoogle && (

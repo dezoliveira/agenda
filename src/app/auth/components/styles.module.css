@@ -1,0 +1,10 @@
+.authLinkContainer {
+  @apply
+    text-center
+}
+
+.authLinkContainer a {
+  @apply
+    pl-2
+    hover:opacity-[0.9]
+}

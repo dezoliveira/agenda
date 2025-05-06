@@ -2,10 +2,10 @@
 import { useRouter } from 'next/navigation'
 import { useState, FormEvent } from 'react'
 import styles from '../styles.module.css'
-import Link from 'next/link'
 import { useRegister } from '@/hooks/useRegister'
 import { toast } from 'react-toastify'
 import { Button } from '@/components/Button'
+import { AuthLink } from '../components/AuthLink'
 
 export default function SignUp() {
   const router = useRouter()
@@ -93,13 +93,11 @@ export default function SignUp() {
           loading={loading}
         />
 
-        <div className={styles.inputBox}>
-          <p>Já é registrado ?
-            <Link href="/auth/login">
-              <strong>Faça Login</strong>
-            </Link>
-          </p>
-        </div>
+        <AuthLink
+          message="Já é registrado ?"
+          hrefLink="/auth/login"
+          hrefText="Faça Login"
+        />
 
         {
           error && (

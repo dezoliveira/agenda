@@ -73,7 +73,7 @@ export default function ForgotPasswordPage() {
               type="button"
               text="Fazer Login"
               loading={loading}
-              route="/auth/loginm"
+              route="/auth/login"
             />
           )
         }
