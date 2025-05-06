@@ -9,6 +9,7 @@ import Link from "next/link"
 import { FcGoogle } from 'react-icons/fc'
 import { useGoogleLogin } from "@/hooks/useGoogleLogin"
 import { Button } from "@/components/Button"
+import GoogleButton from "@/components/GoogleButton"
 
 export default function Login() {
   const router = useRouter()
@@ -90,17 +91,11 @@ export default function Login() {
           <span className={styles.divider}></span>
         </div>
 
-        <div className={styles.inputBox}>
-          <button
-            type="button"
-            className={styles.googleButton}
-            disabled={loadingGoogle}
-            onClick={handleGoogleLogin}
-          >
-            <FcGoogle size={32}/>
-            {loadingGoogle ? "Carregando..." : "Entrar com Google"}
-          </button>
-        </div>
+        <GoogleButton
+          text="Entrar com Google"
+          loading={loading}
+          onClick={handleGoogleLogin}
+        />
 
         <div className={styles.inputBox}>
           <p>Não possui uma conta ?
