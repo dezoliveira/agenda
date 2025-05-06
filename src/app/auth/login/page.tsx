@@ -93,7 +93,7 @@ export default function Login() {
 
         <GoogleButton
           text="Entrar com Google"
-          loading={loading}
+          loading={loadingGoogle}
           onClick={handleGoogleLogin}
         />
 

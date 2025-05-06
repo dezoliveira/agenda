@@ -56,40 +56,9 @@
     text-center
 }
 
-/* .inputBox small {
-  @apply
-    text-blue-500
-    font-bold
-} */
-
-.button {
-  @apply
-    w-[100%]
-    bg-blue-500
-    text-slate-50
-    py-[10px]
-    hover:opacity-[0.9]
-    text-lg
-}
-
 .errorMessage {
   @apply
     text-red-500
-}
-
-.googleButton {
-  @apply
-    w-[100%]
-    bg-slate-950
-    text-slate-50
-    py-[10px]
-    hover:opacity-[0.9]
-    text-lg
-
-    flex
-    items-center
-    justify-center
-    gap-[10px]
 }
 
 .dividerBox {

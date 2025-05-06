@@ -1,0 +1,20 @@
+.buttonContainer {
+  @apply
+    flex
+    flex-col
+}
+
+.googleButton {
+  @apply
+    w-[100%]
+    bg-slate-950
+    text-slate-50
+    py-[10px]
+    hover:opacity-[0.9]
+    text-lg
+
+    flex
+    items-center
+    justify-center
+    gap-[10px]
+}
