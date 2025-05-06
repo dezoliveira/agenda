@@ -5,10 +5,9 @@ import styles from '../auth/styles.module.css'
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "@/lib/firebaseAuth";
 import { toast } from "react-toastify";
-import { MdOutlineEmail } from "react-icons/md";
-import { MdMarkEmailRead } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import StatusAlert from "@/components/StatusAlert";
+import { Button } from "@/components/Button";
 
 export default function ForgotPasswordPage() {
   const router = useRouter()
@@ -61,31 +60,21 @@ export default function ForgotPasswordPage() {
                   </>
                 )
               }
-              
-              <div className={styles.inputBox}>
-                <button
-                  type="submit"
-                  className={styles.button}
-                  disabled={loading}
-                  onClick={handleSubmit}
-                >
-                  {loading ? "Carregando..." : "Enviar"}
-                </button>
-              </div>
+
+              <Button
+                type="submit"
+                text="Enviar"
+                loading={loading}
+              />
+
             </>
           ) : (
-            <>
-              <div className={styles.inputBox}>
-                <button
-                  type="button"
-                  className={styles.button}
-                  disabled={loading}
-                  onClick={() => router.push('/auth/login')}
-                >
-                  {loading ? "Carregando..." : "Fazer Login"}
-                </button>
-              </div>
-            </>
+            <Button
+              type="button"
+              text="Fazer Login"
+              loading={loading}
+              route="/auth/loginm"
+            />
           )
         }
       </form>

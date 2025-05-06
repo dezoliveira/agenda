@@ -8,6 +8,7 @@ import { confirmPasswordReset } from "firebase/auth"
 import { toast } from "react-toastify"
 import { MdMarkEmailRead } from "react-icons/md";
 import StatusAlert from "@/components/StatusAlert"
+import { Button } from "@/components/Button"
 
 export default function ResetPasswordPage() {
   const router = useRouter()
@@ -76,15 +77,12 @@ export default function ResetPasswordPage() {
                 )
               }
 
-              <div className={styles.inputBox}>
-                <button
-                  type="submit"
-                  className={styles.button}
-                  disabled={loading}
-                >
-                  {loading ? "Alterando..." : "Alterar Senha"}
-                </button>
-              </div>
+              <Button
+                type="submit"
+                text="Alterar Senha"
+                loading={loading}
+              />
+              
             </>
           ) : (
             <>
@@ -94,16 +92,12 @@ export default function ResetPasswordPage() {
                 message="Sua senha foi alterada! Faça login e continue usando o agenda."
                 icon={<MdMarkEmailRead size={60} className="text-green-500" />}
               />
-              <div className={styles.inputBox}>
-                <button
-                  type="button"
-                  className={styles.button}
-                  disabled={loading}
-                  onClick={() => router.push('/auth/login')}
-                >
-                  {loading ? "Carregando..." : "Fazer Login"}
-                </button>
-              </div>
+              <Button
+                type="button"
+                text="Fazer Login"
+                loading={loading}
+                route="/auth/login"
+              />
             </>
           )
         }
