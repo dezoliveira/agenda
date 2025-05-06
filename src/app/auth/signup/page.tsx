@@ -5,6 +5,7 @@ import styles from '../styles.module.css'
 import Link from 'next/link'
 import { useRegister } from '@/hooks/useRegister'
 import { toast } from 'react-toastify'
+import { Button } from '@/components/Button'
 
 export default function SignUp() {
   const router = useRouter()
@@ -86,15 +87,11 @@ export default function SignUp() {
           />
         </div>
 
-        <div className={styles.inputBox}>
-          <button
-            type="submit"
-            className={styles.button}
-            disabled={loading}
-          >
-            {loading ? "Carregando..." : "Cadastrar"}
-          </button>
-        </div>
+        <Button
+          text="Cadastrar"
+          type="submit"
+          loading={loading}
+        />
 
         <div className={styles.inputBox}>
           <p>Já é registrado ?

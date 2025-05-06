@@ -82,7 +82,6 @@ export default function Login() {
           text="Login"
           type="submit"
           loading={loading}
-          route="/auth/login"
         />
 
         <div className={styles.dividerBox}>

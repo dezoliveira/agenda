@@ -3,13 +3,19 @@ import { useRouter } from 'next/navigation'
 
 type ButtonProps = {
   text: string
-  type: 'button' | 'submit'
+  type?: 'button' | 'submit'
   loading: boolean
-  route: string
+  route?: string
 }
 
-export function Button({ text, type, loading, route } : ButtonProps) {
+export function Button({ text, type = "button", loading, route } : ButtonProps) {
   const router = useRouter()
+
+  const handleClick = () => {
+    if (route) {
+      router.push(route)
+    }
+  }
   
   return(
     <>
@@ -18,7 +24,7 @@ export function Button({ text, type, loading, route } : ButtonProps) {
           type={type}
           className={styles.button}
           disabled={loading}
-          onClick={() => router.push(route)}
+          onClick={handleClick}
         >
           {loading ? "Carregando..." : text}
         </button>
