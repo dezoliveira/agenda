@@ -9,6 +9,7 @@ import { toast } from "react-toastify"
 import { MdMarkEmailRead } from "react-icons/md";
 import StatusAlert from "@/components/StatusAlert"
 import { Button } from "@/components/Button"
+import { firebaseErrorMessage } from "@/lib/firebaseErrorMessages"
 
 export default function ResetPasswordPage() {
   const router = useRouter()
@@ -18,7 +19,7 @@ export default function ResetPasswordPage() {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  // const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -32,9 +33,10 @@ export default function ResetPasswordPage() {
       // router.push('/auth/login')
       setSuccess(true)
 
-    } catch (err: any) {
-      toast.error('Erro ao alterar senha')
-      setError(err.message)
+    } catch (error: any) {
+      const firebaseErrorCode = error.code || error.message
+      const errorMessage = firebaseErrorMessage(firebaseErrorCode)
+      toast.error(errorMessage)
       
     } finally {
       setLoading(false)
@@ -67,16 +69,6 @@ export default function ResetPasswordPage() {
                 />
               </div>
 
-              {
-                error && (
-                  <>
-                    <div className={styles.errorMessage}>
-                      <p>{error}</p>
-                    </div>
-                  </>
-                )
-              }
-
               <Button
                 type="submit"
                 text="Alterar Senha"
@@ -92,6 +84,7 @@ export default function ResetPasswordPage() {
                 message="Sua senha foi alterada! Faça login e continue usando o agenda."
                 icon={<MdMarkEmailRead size={60} className="text-green-500" />}
               />
+              
               <Button
                 type="button"
                 text="Fazer Login"

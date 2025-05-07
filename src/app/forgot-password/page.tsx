@@ -8,13 +8,14 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import StatusAlert from "@/components/StatusAlert";
 import { Button } from "@/components/Button";
+import { firebaseErrorMessage } from "@/lib/firebaseErrorMessages";
 
 export default function ForgotPasswordPage() {
   const router = useRouter()
   const [email, setEmail] = useState("")
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
-  const [error, setError] = useState<string | null>(null)
+  // const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -25,9 +26,10 @@ export default function ForgotPasswordPage() {
       toast.success("Email enviado com sucesso!")
       setStatus('success')
 
-    } catch (err: any) {
-      toast.error("Ops! Algo deu errado!")
-      setError(err.message)
+    } catch (error: any) {
+      const firebaseErrorCode = error.code || error.message
+      const errorMessage = firebaseErrorMessage(firebaseErrorCode)
+      toast.error(error)
       setStatus('error')
     }
 
@@ -50,16 +52,6 @@ export default function ForgotPasswordPage() {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-
-              {
-                error && (
-                  <>
-                    <div className={styles.errorMessage}>
-                      <p>{error}</p>
-                    </div>
-                  </>
-                )
-              }
 
               <Button
                 type="submit"
