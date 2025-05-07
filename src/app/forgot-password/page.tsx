@@ -27,9 +27,10 @@ export default function ForgotPasswordPage() {
       setStatus('success')
 
     } catch (error: any) {
+      console.log(error)
       const firebaseErrorCode = error.code || error.message
       const errorMessage = firebaseErrorMessage(firebaseErrorCode)
-      toast.error(error)
+      toast.error(errorMessage)
       setStatus('error')
     }
 
