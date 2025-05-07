@@ -34,7 +34,7 @@ export default function SignUp() {
       router.push('/')
 
     } else {
-      toast.error('Ops! Algo deu errado!')
+      toast.error(error)
     }
   }
 
@@ -98,16 +98,6 @@ export default function SignUp() {
           hrefLink="/auth/login"
           hrefText="Faça Login"
         />
-
-        {
-          error && (
-            <>
-              <div className={styles.errorMessage}>
-                <p>{error}</p>
-              </div>
-            </>
-          )
-        }
         
       </form>
     </div>

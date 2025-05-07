@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { auth } from "../lib/firebaseAuth"
 import { updateProfile, createUserWithEmailAndPassword } from "firebase/auth"
+import { firebaseErrorMessage } from "@/lib/firebaseErrorMessages"
 
 interface RegisterCredentials {
   name: string,
@@ -36,7 +37,9 @@ export function useRegister(): UseRegisterResult {
       return true
       
     } catch (error: any) {
-      setError(error.message)
+      const firebaseErrorCode = error.code || error.message
+      const errorMessage = firebaseErrorMessage(firebaseErrorCode)
+      setError(errorMessage)
       setLoading(false)
 
       return false
