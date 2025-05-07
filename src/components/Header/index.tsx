@@ -16,7 +16,7 @@ import { getDropdownMenu } from './dropdownMenu'
 export function Header() {
   const router = useRouter()
 
-  const { logout, loading } = useLogout()
+  const { logout, error } = useLogout()
   const { user, loading: loadingContext } = useAuth()
   const [picture, setPicture] = useState("")
   const [name, setName] = useState("")
@@ -48,7 +48,7 @@ export function Header() {
       toast.success("Deslogado com sucesso!")
       
     } else {
-      toast.error("Ocorreu algum erro")
+      toast.error(error)
     }
   }
 

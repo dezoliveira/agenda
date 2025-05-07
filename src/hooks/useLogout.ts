@@ -1,6 +1,7 @@
 import { signOut } from "firebase/auth"
 import { useState } from "react"
 import { auth } from "../lib/firebaseAuth"
+import { firebaseErrorMessage } from "@/lib/firebaseErrorMessages"
 
 type UseLogoutResult = {
   logout: () => Promise<boolean>
@@ -26,8 +27,10 @@ export function useLogout(): UseLogoutResult {
       setLoading(false)
       return true
       
-    } catch (err: any) {
-      setError(err.message || "Erro ao fazer logout")
+    } catch (error: any) {
+      const firebaseErrorCode = error.code || error.message
+      const errorMessage = firebaseErrorMessage(firebaseErrorCode)
+      setError(errorMessage)
       setLoading(false)
       return false
     }
