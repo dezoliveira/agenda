@@ -1,6 +1,7 @@
 import React, { useState,  } from "react"
 import { auth } from '@/lib/firebaseAuth'
 import { signInWithEmailAndPassword } from "firebase/auth"
+import { firebaseErrorMessage } from '@/lib/firebaseErrorMessages'
 
 type LoginCredentials = {
   email: string,
@@ -42,7 +43,9 @@ export function useLogin(): UseLoginResult {
       return true
 
     } catch (error: any) {
-      setError(error.message);
+      const firebaseErrorCode = error.code || error.message
+      const errorMessage = firebaseErrorMessage(firebaseErrorCode)
+      setError(errorMessage)
       setLoading(false)
 
       return false

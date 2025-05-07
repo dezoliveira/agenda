@@ -1,6 +1,7 @@
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../lib/firebaseAuth";
+import { firebaseErrorMessage } from "@/lib/firebaseErrorMessages";
 
 interface UseGoogleLoginResult {
   loginWithGoogle: () => Promise<boolean>
@@ -37,8 +38,10 @@ export function useGoogleLogin(): UseGoogleLoginResult {
       setLoading(false)
       return true
 
-    } catch (err: any) {
-      setError(err.message)
+    } catch (error: any) {
+      const firebaseErrorCode = error.code || error.message
+      const errorMessage = firebaseErrorMessage(firebaseErrorCode)
+      setError(errorMessage)
       setLoading(false)
 
       return false

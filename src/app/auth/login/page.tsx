@@ -36,7 +36,7 @@ export default function Login() {
       router.push("/dashboard")
 
     } else {
-      toast.error('Ops! Algo deu errado!')
+      toast.error(error)
     }
   }
 
@@ -48,7 +48,7 @@ export default function Login() {
       router.push("/dashboard")
 
     } else {
-      toast.error('Ops! Algo deu errado!')
+      toast.error(error)
     }
   }
 
@@ -103,16 +103,6 @@ export default function Login() {
           hrefLink="/auth/signup"
           hrefText="Registre-se"
         />
-
-        {
-          error || errorGoogle && (
-            <>
-              <div className={styles.errorMessage}>
-                <p>{error || errorGoogle}</p>
-              </div>
-            </>
-          )
-        }
       </form> 
     </div>
   );
