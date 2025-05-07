@@ -1,4 +1,4 @@
-export function firebaseErrorMessage(code: string) : string {
+export function firebaseErrorMessage(code: string): string {
   const errors: Record<string, string> = { // Record porque o erro é um objeto
     'auth/invalid-email': 'E-mail inválido.',
     'auth/user-disabled': 'Usuário desativado.',
