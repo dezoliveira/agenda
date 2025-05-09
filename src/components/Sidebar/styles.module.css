@@ -1,0 +1,12 @@
+.sidebarContainer {
+  @apply
+    h-[100vh]
+    w-[15%]
+    bg-blue-500
+    text-slate-50
+    py-[15px]
+    px-[25px]
+    shadow-2xl
+    fixed
+    block
+}

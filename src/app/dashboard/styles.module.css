@@ -1,0 +1,8 @@
+.mainContainer {
+  @apply
+    flex
+    flex-col
+    w-[full]
+    ml-[15%]
+    p-[25px]
+}
