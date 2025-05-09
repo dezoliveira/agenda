@@ -6,7 +6,6 @@ import { useLogin } from "@/hooks/useLogin"
 import { toast } from "react-toastify"
 import styles from '../styles.module.css'
 import Link from "next/link"
-import { FcGoogle } from 'react-icons/fc'
 import { useGoogleLogin } from "@/hooks/useGoogleLogin"
 import { Button } from "@/components/Button"
 import GoogleButton from "@/components/GoogleButton"
@@ -29,14 +28,14 @@ export default function Login() {
       password
     }
     
-    const success = await login(credentials)
+    const result = await login(credentials)
 
-    if (success) {
+    if (result.success) {
       toast.success('Logado com sucesso!')
       router.push("/dashboard")
 
     } else {
-      toast.error(error)
+      toast.error(result.error || "Erro ao logar")
     }
   }
 

@@ -9,7 +9,7 @@ type LoginCredentials = {
 }
 
 type UseLoginResult = {
-  login: (credentials: LoginCredentials) => Promise<boolean>
+  login: (credentials: LoginCredentials) => Promise<{success: boolean; error?: string}>
   error: string
   loading: boolean
 }
@@ -40,15 +40,16 @@ export function useLogin(): UseLoginResult {
       }
       
       setLoading(false)
-      return true
+      return { success: true }
 
     } catch (error: any) {
       const firebaseErrorCode = error.code || error.message
       const errorMessage = firebaseErrorMessage(firebaseErrorCode)
       setError(errorMessage)
       setLoading(false)
+      console.log(error)
 
-      return false
+      return { success: false, error: errorMessage }
     }
   }
 

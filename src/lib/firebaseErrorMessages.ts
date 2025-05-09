@@ -8,6 +8,8 @@ export function firebaseErrorMessage(code: string): string {
     'auth/weak-password': 'A senha deve ter pelo menos 6 caracteres.',
     'auth/too-many-requests': 'Muitas tentativas. Tente novamente mais tarde.',
     'auth/network-request-failed': 'Erro de rede. Verifique sua conexão.',
+    'auth/missing-password': 'Senha não informada.',
+    'auth/invalid-credential': 'Email ou senha incorretos.'
   }
 
   return errors[code] || 'Erro desconhecido. Tente novamente'
