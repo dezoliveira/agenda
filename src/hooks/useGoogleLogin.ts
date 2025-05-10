@@ -9,11 +9,16 @@ type UseGoogleLoginResult = {
   error: string
 }
 
+type AuthError = {
+  success: boolean
+  error?: string
+}
+
 export function useGoogleLogin(): UseGoogleLoginResult {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>("")
 
-  const loginWithGoogle = async (): Promise<{success: boolean; error?: string}> => {
+  const loginWithGoogle = async (): Promise<AuthError> => {
     const provider = new GoogleAuthProvider()
     setLoading(true)
     setError("")

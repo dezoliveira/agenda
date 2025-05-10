@@ -9,11 +9,16 @@ type UseLogoutResult = {
   error: string
 }
 
+type AuthError = {
+  success: boolean
+  error?: string
+}
+
 export function useLogout(): UseLogoutResult {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>("")
 
-  const logout = async(): Promise<{ success: boolean; error?: string }> => {
+  const logout = async(): Promise<AuthError> => {
     setLoading(true)
     setError("")
 

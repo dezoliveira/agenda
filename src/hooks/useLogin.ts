@@ -9,9 +9,14 @@ type LoginCredentials = {
 }
 
 type UseLoginResult = {
-  login: (credentials: LoginCredentials) => Promise<{success: boolean; error?: string}>
+  login: (credentials: LoginCredentials) => Promise<AuthError>
   error: string
   loading: boolean
+}
+
+type AuthError = {
+  success: boolean
+  error?: string
 }
 
 export function useLogin(): UseLoginResult {

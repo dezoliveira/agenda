@@ -10,9 +10,14 @@ interface RegisterCredentials {
 }
 
 interface  UseRegisterResult {
-  register: (credentials: RegisterCredentials) => Promise<{ success: boolean; error?: string }>
+  register: (credentials: RegisterCredentials) => Promise<AuthError>
   error: string
   loading: boolean
+}
+
+type AuthError = {
+  success: boolean
+  error?: string
 }
 
 export function useRegister(): UseRegisterResult {
