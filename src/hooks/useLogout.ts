@@ -4,7 +4,7 @@ import { auth } from "../lib/firebaseAuth"
 import { firebaseErrorMessage } from "@/lib/firebaseErrorMessages"
 
 type UseLogoutResult = {
-  logout: () => Promise<boolean>
+  logout: () => Promise<{ success: boolean; error?: string}>
   loading: boolean
   error: string
 }
@@ -13,7 +13,7 @@ export function useLogout(): UseLogoutResult {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>("")
 
-  const logout = async(): Promise<boolean> => {
+  const logout = async(): Promise<{ success: boolean; error?: string }> => {
     setLoading(true)
     setError("")
 
@@ -25,14 +25,14 @@ export function useLogout(): UseLogoutResult {
       })
 
       setLoading(false)
-      return true
+      return { success: true }
       
     } catch (error: any) {
       const firebaseErrorCode = error.code || error.message
       const errorMessage = firebaseErrorMessage(firebaseErrorCode)
       setError(errorMessage)
       setLoading(false)
-      return false
+      return { success: false, error: errorMessage }
     }
   }
 

@@ -40,14 +40,14 @@ export default function Login() {
   }
 
   const handleGoogleLogin = async() => {
-    const success = await loginWithGoogle()
+    const result = await loginWithGoogle()
 
-    if (success) {
+    if (result.success) {
       toast.success('Logado com sucesso!')
       router.push("/dashboard")
 
     } else {
-      toast.error(error)
+      toast.error(result.error || "Erro ao logar com o google")
     }
   }
 

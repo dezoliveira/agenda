@@ -3,8 +3,8 @@ import { useState } from "react";
 import { auth } from "../lib/firebaseAuth";
 import { firebaseErrorMessage } from "@/lib/firebaseErrorMessages";
 
-interface UseGoogleLoginResult {
-  loginWithGoogle: () => Promise<boolean>
+type UseGoogleLoginResult = {
+  loginWithGoogle: () => Promise<{success: boolean; error?: string}>
   loading: boolean
   error: string
 }
@@ -13,7 +13,7 @@ export function useGoogleLogin(): UseGoogleLoginResult {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>("")
 
-  const loginWithGoogle = async (): Promise<boolean> => {
+  const loginWithGoogle = async (): Promise<{success: boolean; error?: string}> => {
     const provider = new GoogleAuthProvider()
     setLoading(true)
     setError("")
@@ -36,7 +36,7 @@ export function useGoogleLogin(): UseGoogleLoginResult {
       }
 
       setLoading(false)
-      return true
+      return { success: true } 
 
     } catch (error: any) {
       const firebaseErrorCode = error.code || error.message
@@ -44,7 +44,7 @@ export function useGoogleLogin(): UseGoogleLoginResult {
       setError(errorMessage)
       setLoading(false)
 
-      return false
+      return { success: false, error: errorMessage } 
     }
   }
 

@@ -40,15 +40,14 @@ export function Header() {
   }, [user])
   
   const handleLogout = async () => {
-    const success = await logout()
-    console.log(user)
+    const result = await logout()
 
-    if (success) {
+    if (result.success) {
       router.push('/')
       toast.success("Deslogado com sucesso!")
       
     } else {
-      toast.error(error)
+      toast.error(result.error || "Errou ao realizar logout" )
     }
   }
 

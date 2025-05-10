@@ -10,7 +10,7 @@ interface RegisterCredentials {
 }
 
 interface  UseRegisterResult {
-  register: (credentials: RegisterCredentials) => Promise<boolean>
+  register: (credentials: RegisterCredentials) => Promise<{ success: boolean; error?: string }>
   error: string
   loading: boolean
 }
@@ -31,10 +31,9 @@ export function useRegister(): UseRegisterResult {
         displayName: name
       })
 
-      console.log("Usuário registrado", userCredentials.user)
       setLoading(false)
 
-      return true
+      return { success: true }
       
     } catch (error: any) {
       const firebaseErrorCode = error.code || error.message
@@ -42,7 +41,7 @@ export function useRegister(): UseRegisterResult {
       setError(errorMessage)
       setLoading(false)
 
-      return false
+      return { success: false, error: errorMessage }
     }
   }
 

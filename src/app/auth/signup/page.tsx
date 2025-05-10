@@ -27,14 +27,14 @@ export default function SignUp() {
       password
     }
     
-    const success = await register(credentials)
+    const result = await register(credentials)
 
-    if (success) {
+    if (result.success) {
       toast.success('Registrado com sucesso!')
       router.push('/')
 
     } else {
-      toast.error(error)
+      toast.error(result.error || "Ocorreu um erro ao cadastrar.")
     }
   }
 
