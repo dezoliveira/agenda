@@ -1,12 +1,23 @@
 .sidebarContainer {
   @apply
-    h-[100vh]
-    w-[15%]
-    bg-blue-500
-    text-slate-50
-    py-[15px]
-    px-[25px]
-    shadow-2xl
-    fixed
-    block
+    h-full
+    transition-all
+    duration-300
+    bg-slate-900
+    text-white p-4
+}
+
+.sidebarContainerOpen {
+  @apply
+    w-[100%]
+    text-2xl
+    text-center
+    absolute
+    top-0
+    left-0
+    z-10
+    sm:w-[15%]
+    sm:text-base
+    sm:text-left
+    sm:sticky
 }

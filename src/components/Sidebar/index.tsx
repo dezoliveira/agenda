@@ -14,7 +14,7 @@ interface SidebarProps {
 
 export default function Sidebar({ isOpen, toggleSidebar } : SidebarProps) {
   return(
-    <aside className={`h-full transition-all duration-300 bg-slate-900 text-white p-4 ${isOpen ? 'w-[100%] text-2xl text-center absolute top-0 left-0 z-10 sm:w-[15%] sm:text-base sm:text-left sm:sticky' :  'auto'}`}>
+    <aside className={`${styles.sidebarContainer} ${isOpen && styles.sidebarContainerOpen}`}>
       <div className="flex items-center justify-between w-full">
         {isOpen && (
           <Link href="#">
