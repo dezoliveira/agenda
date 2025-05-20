@@ -1,8 +1,20 @@
-.mainContainer {
+.layoutContainer {
+  @apply
+    flex
+    w-full
+    h-screen
+}
+
+.expandedContainer {
   @apply
     flex
     flex-col
-    w-[full]
-    ml-[15%]
-    p-[25px]
+    flex-1
+}
+
+.mainContainer {
+  @apply
+    flex-1
+    p-6
+    overflow-auto
 }

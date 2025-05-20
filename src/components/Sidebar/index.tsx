@@ -5,7 +5,9 @@ import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { RiInsertRowTop } from "react-icons/ri";
 import { TbLayoutSidebarLeftExpandFilled, TbLayoutSidebarRightExpandFilled  } from "react-icons/tb";
 import { TbDoorExit } from "react-icons/tb";
+import { RxHamburgerMenu } from "react-icons/rx";
 import Link from 'next/link';
+import { LuSquareArrowLeft } from "react-icons/lu";
 
 interface SidebarProps {
   isOpen: boolean
@@ -15,43 +17,47 @@ interface SidebarProps {
 export default function Sidebar({ isOpen, toggleSidebar } : SidebarProps) {
   return(
     <aside className={`${styles.sidebarContainer} ${isOpen && styles.sidebarContainerOpen}`}>
-      <div className="flex items-center justify-between w-full">
+      <div className={styles.sidebarHeader}>
         {isOpen && (
           <Link href="#">
             <strong className="text-blue-500">a</strong>genda
           </Link>
         )}
 
-        <button onClick={toggleSidebar}>
+        <button className={styles.buttonSidebar} onClick={toggleSidebar}>
           {isOpen ? (
-            <TbLayoutSidebarRightExpandFilled size={24} className="text-blue-500" />
+            <LuSquareArrowLeft size={24} />
           ) : (
-            <TbLayoutSidebarLeftExpandFilled size={24} className="text-blue-500" />
+            <RxHamburgerMenu size={24} />
           )}
         </button>
       </div>
-      <div className='py-[15px]'>
+      <div className={styles.sidebarContent}>
         { isOpen ? (
-          <nav className='flex flex-col gap-[15px]'>
-            <Link href="/" className='flex gap-[5px] hover:text-blue-500 hover:cursor-pointer'>
+          <nav className={styles.navExpanded}>
+            <Link href="/">
               <MdOutlineSpaceDashboard size={24} />
               Dashboard
             </Link>
-            <Link href="/" className='flex gap-[5px] hover:text-blue-500 hover:cursor-pointer'>
-              <RiInsertRowTop size={24} className='hover:cursor-pointer hover:text-blue-500'/>
+            <Link href="/">
+              <RiInsertRowTop size={24} />
               Agendamento
             </Link>
-            <Link href="/" className='flex gap-[5px] hover:cursor-pointer hover:text-blue-500'>
-              <TbDoorExit size={24} className='hover:cursor-pointer hover:text-blue-500'/>
+            <Link href="/">
+              <TbDoorExit size={24} />
               Sair
             </Link>
           </nav>
         ) : (
-          <nav className='flex flex-col gap-[15px]'>
-            <MdOutlineSpaceDashboard size={24}  className='hover:cursor-pointer hover:text-blue-500'/>
-            <RiInsertRowTop size={24} className='hover:cursor-pointer hover:text-blue-500'/>
-            <Link href="/" className=''>
-              <TbDoorExit size={24} className='hover:cursor-pointer hover:text-blue-500'/>
+          <nav className={styles.navIcons}>
+            <Link href="/">
+              <MdOutlineSpaceDashboard size={24} />
+            </Link>
+            <Link href="/">
+              <RiInsertRowTop size={24} />
+            </Link>
+            <Link href="/">
+              <TbDoorExit size={24} />
             </Link>
           </nav>
         )}

@@ -21,3 +21,40 @@
     sm:text-left
     sm:sticky
 }
+
+.sidebarHeader {
+  @apply
+    flex
+    items-center
+    justify-between
+    w-full
+}
+
+.buttonSidebar svg {
+  @apply text-blue-500
+}
+
+.sidebarContent {
+  @apply
+    py-[15px]
+}
+
+.sidebarContent nav {
+  @apply
+    flex
+    flex-col
+    gap-[15px]
+}
+
+.navExpanded a {
+  @apply
+    flex
+    gap-[5px]
+    hover:text-blue-500 hover:cursor-pointer
+}
+
+.navIcons a {
+  @apply
+    hover:cursor-pointer
+    hover:text-blue-500
+}

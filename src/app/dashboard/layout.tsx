@@ -10,11 +10,11 @@ export default function DashboardLayout({ children } : { children: React.ReactNo
   const [isSidebarOpen, setSidebarOpen] = useState(true)
   
   return (
-    <div className='flex w-full h-screen'>
+    <div className={styles.layoutContainer}>
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={() => setSidebarOpen(!isSidebarOpen)}/>
-      <div className='flex flex-col flex-1'>
+      <div className={styles.expandedContainer}>
         <Header />
-        <main className="flex-1 p-6 overflow-auto">
+        <main className={styles.mainContainer}>
           <ProtectedContent>
             {children}
           </ProtectedContent>
